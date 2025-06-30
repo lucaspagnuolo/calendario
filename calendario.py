@@ -53,12 +53,13 @@ for month in months:
     monthly_count = 0
 
     # Header giorni settimana
-days = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom']
+    days = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom']
     cols = st.columns(7)
     for idx, d in enumerate(days):
         cols[idx].write(f"**{d}**")
 
-    # Checkbox per giorno\ for week in cal:
+    # Checkbox per giorno
+    for week in cal:
         cols = st.columns(7)
         for i, d in enumerate(week):
             if d:
@@ -72,12 +73,14 @@ days = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom']
             else:
                 cols[i].write("")
 
-    # Mostra conteggio mensile\ nif monthly_count > 11:
+    # Mostra conteggio mensile
+    if monthly_count > 11:
         st.error(f"{selected} ha selezionato {monthly_count} giorni in {calendar.month_name[month]}, oltre il limite di 11.")
     else:
         st.success(f"{selected} ha segnato {monthly_count} giorni in {calendar.month_name[month]}")
 
-# Espander per vedere tutti i giorni selezionati\ nall_days = st.expander("Visualizza giorni per persona")
+# Espander per vedere tutti i giorni selezionati
+all_days = st.expander("Visualizza giorni per persona")
 with all_days:
     for p in persons:
         st.subheader(p)
