@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import calendar
-import datetime
 import json
 import os
 
@@ -53,7 +52,7 @@ for month in months:
     cal = calendar.monthcalendar(year, month)
 
     # Display weekdays header
-days = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom']
+    days = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom']
     cols = st.columns(7)
     for idx, day in enumerate(days):
         cols[idx].write(f"**{day}**")
