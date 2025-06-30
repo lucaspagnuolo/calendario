@@ -47,18 +47,16 @@ months = list(range(7, 13))  # Luglio=7 a Dicembre=12
 
 for month in months:
     st.header(f"{calendar.month_name[month]} {year}")
-    # Build month calendar as DataFrame
-g    cal = calendar.monthcalendar(year, month)
-    df = pd.DataFrame(cal)
-    df.replace(0, '')
+    cal = calendar.monthcalendar(year, month)
+    dates_checked = 0
 
     # Display calendar with checkbox per giorno
-dates_checked = 0
     cols = st.columns(7)
     # Set headers lun-dom (Italian)
     weekdays = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom']
     for idx, w in enumerate(weekdays):
         cols[idx].write(f"**{w}**")
+
     # Iterate weeks
     for week in cal:
         cols = st.columns(7)
@@ -76,7 +74,6 @@ dates_checked = 0
     st.write(f"**Giorni di smartworking segnati: {dates_checked}**")
 
 # Salva dati smartworking
-enctype = st.form_submit_button
 if st.button("Salva modifiche"):
     save_json(smartwork, SMART_FILE)
     st.success("Dati di smartworking salvati con successo!")
